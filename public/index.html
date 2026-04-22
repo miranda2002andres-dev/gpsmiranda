@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no"
+    />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Rapidísimos" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/icon-192x192.png" />
+    <title>INTERRAPIDISIMOS - Rastreo GPS</title>
+  </head>
+  <body>
+    <noscript>Necesitas activar JavaScript para usar la aplicación.</noscript>
+    <div id="root"></div>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then((registration) => {
+              console.log("Service Worker registrado");
+
+              // Solicitar permiso para notificaciones
+              if (
+                "Notification" in window &&
+                Notification.permission !== "granted"
+              ) {
+                Notification.requestPermission();
+              }
+            })
+            .catch((error) => {
+              console.log("Error al registrar Service Worker:", error);
+            });
+        });
+      }
+
+      // Detectar si la app se ejecuta como PWA
+      if (window.matchMedia("(display-mode: standalone)").matches) {
+        console.log("App ejecutándose como PWA");
+      }
+    </script>
+  </body>
+</html>

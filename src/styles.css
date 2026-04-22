@@ -1,0 +1,354 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    sans-serif;
+  overflow: hidden;
+  height: 100vh;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  height: 100vh;
+}
+
+/* Estilos de Leaflet */
+.leaflet-popup-content {
+  font-size: 14px;
+  line-height: 1.4;
+  min-width: 150px;
+}
+
+.leaflet-popup-content strong {
+  color: #ff8c42;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Animaciones */
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff8c42;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e57a00;
+}
+
+/* Botones */
+button {
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* ============ ESTILOS PARA MÓVIL ============ */
+@media (max-width: 768px) {
+  /* Ajustes para pantallas táctiles */
+  button,
+  .leaflet-control-zoom a,
+  .leaflet-popup-close-button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Mejorar touch targets en el mapa */
+  .leaflet-control-zoom a {
+    width: 40px !important;
+    height: 40px !important;
+    line-height: 40px !important;
+    font-size: 18px !important;
+  }
+
+  /* Ajustar tamaño de fuentes para móvil */
+  body {
+    font-size: 16px;
+  }
+
+  /* Prevenir zoom en inputs (importante para móvil) */
+  input,
+  select,
+  button,
+  textarea {
+    font-size: 16px !important;
+  }
+
+  /* Ajustar paneles flotantes */
+  .listaFlotante {
+    max-width: 220px !important;
+    font-size: 11px !important;
+    max-height: 250px !important;
+  }
+
+  /* Botones principales más grandes */
+  .botonIniciar,
+  .botonGuardar,
+  .botonCancelar,
+  .botonActivarGPS,
+  .botonDesactivarGPS {
+    padding: 12px 16px !important;
+    font-size: 14px !important;
+    border-radius: 30px !important;
+  }
+
+  /* Header más compacto en móvil */
+  .header {
+    padding: 10px 16px !important;
+  }
+
+  .header h1 {
+    font-size: 16px !important;
+  }
+
+  .header p {
+    font-size: 10px !important;
+  }
+
+  /* Panel de temáticas responsive */
+  .panelTematicas {
+    gap: 6px !important;
+    padding: 8px 12px !important;
+  }
+
+  .tematicaActiva,
+  .tematicaInactiva {
+    padding: 6px 10px !important;
+    font-size: 10px !important;
+  }
+
+  /* Estadísticas en móvil */
+  .estadisticas {
+    gap: 10px !important;
+    padding: 6px 12px !important;
+  }
+
+  .estadisticas span {
+    font-size: 11px !important;
+  }
+
+  /* Modales responsive */
+  .modalContent,
+  .modalContentAsignacion,
+  .modalContentZona {
+    width: 95% !important;
+    margin: 10px !important;
+    padding: 16px !important;
+  }
+
+  /* Paneles laterales */
+  .panelLateral {
+    width: 280px !important;
+  }
+
+  /* Lista de casitas */
+  .listaCasitas {
+    width: 260px !important;
+  }
+
+  /* Formulario flotante */
+  .formularioFlotante {
+    width: 90% !important;
+    left: 5% !important;
+    right: auto !important;
+    bottom: 10px !important;
+  }
+
+  /* Info panel */
+  .infoPanel {
+    width: 90% !important;
+    left: 5% !important;
+    right: auto !important;
+    bottom: 10px !important;
+  }
+}
+
+/* ============ ESTILOS PARA PANTALLAS MUY PEQUEÑAS ============ */
+@media (max-width: 480px) {
+  .panelLateral {
+    width: 240px !important;
+  }
+
+  .listaCasitas {
+    width: 220px !important;
+  }
+
+  .zonaCard,
+  .casitaItem {
+    padding: 8px !important;
+  }
+
+  .zonaNombre,
+  .casitaInfo strong {
+    font-size: 12px !important;
+  }
+
+  .zonaInfo,
+  .casitaDireccion {
+    font-size: 10px !important;
+  }
+}
+
+/* ============ ESTILOS PARA MODO OSCURO (OPCIONAL) ============ */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #0f172a;
+  }
+}
+
+/* ============ ESTILOS PARA PREVENIR SELECCIÓN EN MÓVIL ============ */
+.no-select {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ============ MEJORAS PARA EL MAPA EN MÓVIL ============ */
+.leaflet-container {
+  touch-action: pan-x pan-y pinch-zoom;
+}
+
+.leaflet-control-zoom {
+  margin-bottom: 20px !important;
+  margin-right: 10px !important;
+}
+
+/* ============ ESTILOS PARA BOTONES DE ACCIÓN FLOTANTES ============ */
+.floating-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 28px;
+  background-color: #ff8c42;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.floating-button:hover {
+  transform: scale(1.05);
+}
+
+.floating-button:active {
+  transform: scale(0.95);
+}
+
+/* ============ ESTILOS PARA LOADING ============ */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #334155;
+  border-top-color: #ff8c42;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============ ESTILOS PARA NOTIFICACIONES ============ */
+.notification-toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1e293b;
+  color: #ff8c42;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 2000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+  animation: fadeOut 3s ease forwards;
+}
+
+/* ============ ESTILOS PARA MEJOR TOUCH EN LISTAS ============ */
+.listaZonas,
+.listaCasitas,
+.listaFlotante {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ============ ESTILOS PARA INPUTS EN MÓVIL ============ */
+input,
+select,
+textarea {
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 8px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #ff8c42;
+}
+
+/* ============ ESTILOS PARA BOTONES DESACTIVADOS ============ */
+button:disabled {
+  opacity: 0.5;
+  transform: none;
+  cursor: not-allowed;
+}
